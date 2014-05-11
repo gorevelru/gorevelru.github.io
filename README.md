@@ -1,7 +1,8 @@
 revel.github.io
 ===============
 
-The jekyll site located at [revel.github.io](http://revel.github.io).
+Перевод документации фреймворка Revel.
+Исходники находятся на  [revel.github.io](http://revel.github.io).
 
 To compile and view the site locally:
 
