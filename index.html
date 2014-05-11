@@ -163,24 +163,24 @@ title: Revel на русском | Веб фреймворк на языке go 
 
       <section id="teaser">
         <div class="page-header">
-          <h1>Overview</h1>
+          <h1>Обзор</h1>
         </div>
         <p>
-          This section gives you a taste of various parts of the framework:
+          Этот раздел даст вам попробовать различные части фреймоврка:
         </p>
 
         <dl class="dl-horizontal">
-          <dt><a href="#routing">Routing</a></dt>
-          <dd>A simple declarative routing syntax.  Type-safe reverse routing.</dd>
+          <dt><a href="#routing">Маршрутизация</a></dt>
+          <dd>Простой декларативный синтаксис. Типобезопасная обратная маршрутизация.</dd>
 
-          <dt><a href="#controllers">Controllers</a></dt>
+          <dt><a href="#controllers">Контроллеры</a></dt>
           <dd>
             Revel organizes endpoints into Controllers. They provide easy
             data binding and form validation.
           </dd>
 
-          <dt><a href="#templates">Templates</a></dt>
-          <dd>Revel makes Go Templates simple to use at scale.</dd>
+          <dt><a href="#templates">Шаблоны</a></dt>
+          <dd>Revel делает Go шаблоны простыми в использовании и масштабируемыми.</dd>
 
           <dt><a href="#interceptors">Interceptors</a></dt>
           <dd>
@@ -188,22 +188,21 @@ title: Revel на русском | Веб фреймворк на языке go 
             can be activated per Controller.
           </dd>
 
-          <dt><a href="#filters">Filters</a></dt>
+          <dt><a href="#filters">Фильтры</a></dt>
           <dd>
-            More general functionality can be implemented with Filters.
+            Большая функциональность достигается при помощи Фильтров.
           </dd>
 
         </dl>
 
         <div class="row">
           <div class="span6">
-            <h2 id="routing">Routing</h2>
+            <h2 id="routing">Маршрутизация</h2>
             <p>
-              Revel uses a declarative routing syntax. It collects all routes
-              for an app in a single file, with a simple syntax for matching
-              requests, extracting arguments from URIs, and specifying
-              route-specific arguments to the action. Here's a commented
-              sample...
+              Revel использует декларативный синтаксис. Все маршруты для приложения находятся в одном файле
+               с простым синтаксисом для проверки совпадания
+              , извлечения параметров из урла и указания конеретного действия.
+              Ниже находится пример с комментариями.
             </p>
           </div>
           <div class="span12">
