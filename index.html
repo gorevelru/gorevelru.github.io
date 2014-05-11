@@ -175,8 +175,8 @@ title: Revel на русском | Веб фреймворк на языке go 
 
           <dt><a href="#controllers">Контроллеры</a></dt>
           <dd>
-            Revel organizes endpoints into Controllers. They provide easy
-            data binding and form validation.
+            Revel поддерживает endpoints в Контроллерах. Они обеспечивают легкую 
+            привязку данных и проверку форм.
           </dd>
 
           <dt><a href="#templates">Шаблоны</a></dt>
@@ -220,18 +220,18 @@ GET    /public/*filepath     Static.Serve("public")  <b># Assets served from /pu
           </div>
           <div class="span6">
 						<p>
-							Reverse routes can be generated in a type-safe manner.  For example:
+							Обратные маршруты могут быть сгенерированы в типобезопасной манере.  Например:
 						</p>
           </div>
           <div class="span12">
             <pre class="prettyprint lang-go">
-// Show the hotel information.
+// Вывод информации об отелях.
 func (c Hotels) Show(id int) revel.Result {
 	hotel := HotelById(id)
 	return c.Render(hotel)
 }
 
-// Save the updated hotel information and redirect back to Show.
+// Загрузка информации и редирект на страницу вывода.
 func (c Hotels) Save(hotel Hotel) revel.Result {
 	// validate and save hotel
 	return c.Redirect(<b>routes.Hotels.Show(hotel.Id)</b>)
@@ -241,18 +241,18 @@ func (c Hotels) Save(hotel Hotel) revel.Result {
 
         <div class="row">
           <div class="span6">
-            <h2 id="controllers">Controllers</h2>
+            <h2 id="controllers">Контроллеры</h2>
             <p>
-              All Actions are methods on a Controller.  This teaser shows a couple cool things:
+              Все действия это методы в контроллере. Несколько классных вещей:
               <ul>
-                <li> <b>Data binding.</b>  Revel binds simple values and structs from
-                  the URL or form and passes them as parameters to your method.
+                <li> <b>Привязка данных.</b>  Revel связывает простые значения и части урла или формы
+                  и передает их в качестве параметров в ваш метод.
                   (If you prefer to access them directly from a parameter map, that's ok too!)
-                <li> <b>Validation.</b> Helpers to manage validation errors.
+                <li> <b>Валидация.</b> Хелперы управляют ошибками валидации.
                 <li> <b>Flash.</b> The flash is a cookie that lives for one
                   request (errors, success messages, etc).
-                <li> <b>Session.</b> The session is a cryptographically signed
-                  cookie, exposed as a <code>map[string]string</code>.
+                <li> <b>Сессии.</b> Сессии это криптографические
+                  cookie, вида <code>map[string]string</code>.
                 <li> <b>Results.</b> Redirections take advantage of reverse
                   routing.  Template rendering makes your data available using the
                   name of the local variable!
