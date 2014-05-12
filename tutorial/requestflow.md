@@ -1,25 +1,24 @@
 ---
-title: The Request Flow
+title: Поток выполнения
 layout: tutorial
 ---
 
-In the [previous article](createapp.html) we created a new Revel application
-called **myapp**. In this article we look at how Revel handles the HTTP request
-to http://localhost:9000/, resulting in the welcome message.
+В [предыдущей статье](createapp.html) мы создали новое Revel приложение
+названное **myapp**. В этой статье мы посмотрим как Revel обрабатывает HTTP запросы
+к http://localhost:9000/.
 
-### Routes
+### Маршрутизация
 
-The first thing that Revel does is check the **conf/routes** file -- the
-generated routes file contains a route:
+Первым делом Revel проверяет файл **conf/routes**  -- тут находятся маршруты:
 
 	GET     /                                       App.Index
 
-This tells Revel to invoke the **Index** method of the **App**
-controller when it receives a **GET** request to **/**.
+Это запись говорит выполнить метод **Index** контроллера **App**
+когда **GET** запрос придет на  **/**.
 
-### Actions
+### Действия
 
-Let's follow this call to the code, in **app/controllers/app.go**:
+Проследим за вызовом до файла контроллера **app/controllers/app.go**:
 
 	package controllers
 
@@ -33,20 +32,21 @@ Let's follow this call to the code, in **app/controllers/app.go**:
 		return c.Render()
 	}
 
-All controllers must be structs that embed `*revel.Controller`
-in the first slot (directly or indirectly). Any method on a controller that is
-exported and returns a `revel.Result` may be treated as an Action.
+Все контроллеры должны включать объявление `*revel.Controller`
+в первой строке (прямо или косвенно). Каждый экспортируемый метод в контроллере,
+возвращающий `revel.Result` может рассматриваться в качестве действия.
 
-The Revel controller provides many useful methods for generating Results. In
-this example, it calls [`Render()`](../docs/godoc/mvc.html#Controller.Render),
-which tells Revel to find and render a template as the response (**200 OK**).
+Контроллеры поддерживают много удобных методов для генерации Result.
+В данном примере вызывается [`Render()`](../docs/godoc/mvc.html#Controller.Render),
+который находит и передает в шаблон ответ (**200 OK**).
 
-### Templates
+### Шаблоны
 
-All templates are kept in the **app/views** directory. When an explicit
-template name is not specified, Revel looks for a template matching the action.
-In this case, Revel finds the **app/views/App/Index.html** file, and
-renders it as a [Go template](http://www.golang.org/pkg/html/template).
+Все шаблоны находятся в директории **app/views**. Когда имя шаблона не указано явно,
+Revel ищет шаблон по названию действия.
+В данном случае, Revel ищет файл вида **app/views/App/Index.html** и представляет его 
+как [Go шаблон](http://www.golang.org/pkg/html/template).
+
 
 {% raw %}
 
@@ -76,18 +76,18 @@ renders it as a [Go template](http://www.golang.org/pkg/html/template).
 
 {% endraw %}
 
-Beyond the functions provided by the Go templates, Revel adds
-[a few helpful ones](../manual/templates.html) of its own.
+Помимо функций, предоставляемых шаблонами GO, Revel добавляет 
+[несколько полезностей](../manual/templates.html) из свои собственных.
 
-This template is very simple.  It:
+Данный шаблон очень прост.  Он:
 
-1. Adds a new **title** variable to the render context.
-2. Includes the **header.html** template (which uses the title).
-3. Displays a welcome message.
-4. Includes the **flash.html** template, which shows any flashed messages.
-5. Includes the **footer.html**.
+1. Добавляет новое значение **title** для подставление в контекст.
+2. Подключает шаблон **header.html** (который использует title).
+3. Показывает приветственное сообщение.
+4. Подключает шаблон **flash.html** , который показыает некоторые "flashed" сообщения.
+5. Подключает **footer.html**.
 
-If you look at header.html, you can see some more template tags in action:
+Если вы посмотрите на header.html, вы сможете увидеть больше шаблонных тегов в действии:
 
 {% raw %}
 
@@ -111,57 +111,55 @@ If you look at header.html, you can see some more template tags in action:
 
 {% endraw %}
 
-You can see the title being set, and you can also see that it accepts JS and CSS
-files included from calling templates in the **moreStyles** and **moreScripts**
-variables.
+Вы можете увидеть, как задачется title и подключаются JS и CSS файлы, в том числе и из переменных 
+**moreStyles** и **moreScripts**.
 
-### Hot-reload
+### Горячяя перезагрузка
 
-Let's change the welcome message.  In **Index.html**, change
+Давайте изменим приветственное сообщение.  В **Index.html** изменим
 
 	<h1>It works!</h1>
 
-to
+на
 
 	<h1>Hello World</h1>
 
-Refresh your browser, and you should see the change immediately!  Revel noticed
-that your template changed and reloaded it.
+Обновим страничку и увидем изменения! Revel заметил, что шаблон изменился и перезагрузил его.
 
-Revel watches:
+Revel следит за изменениями:
 
-* All go code under **app/**
-* All templates under **app/views/**
-* Your routes file: **conf/routes**
+* Любого кода в  **app/**
+* Любого шаблона в  **app/views/**
+* Любого маршрута в **conf/routes**
 
-Changes to any of those will cause Revel to update your running app with the
-newest code.  Try it right now: open **app/controllers/app.go** and introduce
-an error.
+Изменение любого из них заставит Revel обновить и запустить приложение с новейшим кодом.
 
-Change
+Попробуйте прямо сейчас: откройте **app/controllers/app.go** и допустите ошибку.
+
+Измените
 
 	return c.Render()
 
-to
+на
 
 	return c.Renderx()
 
-Refresh the page and Revel will display a helpful error message:
+Обновите страницу и Revel укажет ошибку:
 
 ![A helpful error message](../img/helpfulerror.png)
 
-Lastly, let's pass some data into the template.
+В заключении, добавим некоторую информацию в шаблон.
 
-In **app/controllers/app.go**, change:
+В **app/controllers/app.go** поменяйте:
 
 	return c.Renderx()
 
-to:
+на:
 
 	greeting := "Aloha World"
 	return c.Render(greeting)
 
-In **app/views/App/Index.html**, change:
+В **app/views/App/Index.html** поменяйте:
 
 {% raw %}
 
@@ -169,7 +167,7 @@ In **app/views/App/Index.html**, change:
 
 {% endraw %}
 
-to:
+на:
 
 {% raw %}
 
@@ -177,8 +175,8 @@ to:
 
 {% endraw %}
 
-Refresh the page and you should see your Hawaiian greeting.
+Обновите страницу и увидете гавайское приветствие.
 
 ![A Hawaiian greeting](../img/AlohaWorld.png)
 
-**Next: [Make a simple Hello World application](firstapp.html).**
+**Далее: [Создаем Hello World приложение](firstapp.html).**
