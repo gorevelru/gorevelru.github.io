@@ -32,6 +32,7 @@ layout: tutorial
 	go get github.com/revel/revel
 
 Произойдет следующие:
+
 * Go, используя git, клонирует репозиторий в `$GOPATH/src/github.com/revel/revel/`
 * Go найдет все зависимости и установит их через `go get`.
 
