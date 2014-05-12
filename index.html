@@ -233,7 +233,7 @@ func (c Hotels) Show(id int) revel.Result {
 
 // Загрузка информации и редирект на страницу вывода.
 func (c Hotels) Save(hotel Hotel) revel.Result {
-	// validate and save hotel
+	// проверка и сохранение отеля
 	return c.Redirect(<b>routes.Hotels.Show(hotel.Id)</b>)
 }</pre>
 					</div>
@@ -304,12 +304,12 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
 
         <div class="row">
           <div class="span6">
-            <h2 id="templates">Templates</h2>
+            <h2 id="templates">Шаблоны</h2>
             <p>
-              By convention, Revel manages to integrate
+              В соответствии с соглашением, Revel легко интегрирует 
               <a href="http://golang.org/pkg/text/template/">Go Templates</a>
-              easily into the rest of the web app. Here is part of the template
-              rendered in the <b>Register</b> action shown above.
+              в остальные части веб приложения. Ниже представлена часть шаблона
+              показывающая <b>Регистрацию</b> из примера выше.
             </p>
             Note that:
             <ul>
