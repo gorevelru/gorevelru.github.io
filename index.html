@@ -1,6 +1,6 @@
 ---
 root: .
-title: Revel на русском | Веб фреймворк на языке go (golang)
+title: Revel на русском | Веб фреймворк на языке Go (golang)
 ---
 <!DOCTYPE html>
 <html lang="ru">
@@ -16,7 +16,7 @@ title: Revel на русском | Веб фреймворк на языке go 
   <body onload="prettyPrint()">
     <a href="https://github.com/Zverushko/Zverushko.github.io">
       <img style="position: absolute; top: 0; right: 0; border: 0; z-index:1000;"
-           src="img/forkme_right_orange_ff7600.png" alt="Помоч с переводом"></a>
+           src="img/forkme_right_orange_ff7600.png" alt="Помочь с переводом"></a>
 
     {% include topnav.html %}
 
@@ -26,8 +26,7 @@ title: Revel на русском | Веб фреймворк на языке go 
           <div class="hero-img"><img src="img/RevelWhiteLines.png" height="500" width="350"></div>
           <div class="hero-text">
             <h1>Revel</h1>
-            <p>Высокопроизводительный веб фреймворк на языке GO (golang).</p>
-            <p>Перевод сайта <a href="http://revel.github.io/">revel.github.io</a>.</p>
+            <p>Высокопроизводительный веб фреймворк на языке Go (golang).</p>
           </div>
         </div>
       </div>
@@ -66,10 +65,10 @@ title: Revel на русском | Веб фреймворк на языке go 
         <div class="span4">
           <h2>Быстрое выполнение</h2>
           <p>
-            Revel построен на топовом Go HTTP сервере, который
-            <a href="http://www.techempower.com/benchmarks/#section=data-r8">по результатам тестирования
-            </a> работает <b>от 3 до 10 раз</b> быстрее, чем 
-            Rails.
+            Revel работает на HTTP сервере Go, который, по последним 
+            <a href="http://www.techempower.com/benchmarks/#section=data-r9">замерам
+            производительности</a> обгоняет Ruby on Rails в <b>10–50 раз</b> на
+            различных нагрузках.
           </p>
         </div>
       </div>
@@ -80,18 +79,18 @@ title: Revel на русском | Веб фреймворк на языке go 
         <div class="span4">
           <h2>Синхронный</h2>
           <p>
-            The <a href="http://golang.org/pkg/net/http/">Go HTTP server</a>
-            runs each request in its own
-            <a href="http://golang.org/doc/effective_go.html#goroutines">goroutine</a>.
-            Write simple callback-free code without guilt.
+            В <a href="http://golang.org/pkg/net/http/">HTTP сервере Go</a>
+            каждый запрос выполняется в отдельной
+            <a href="http://golang.org/doc/effective_go.html#goroutines">горутине</a>.
+            Пишите простой код без колбеков и головной боли.
           </p>
         </div>
         <div class="span4">
-          <h2>Stateless</h2>
+          <h2>Без состояния</h2>
           <p>
-            Revel provides primitives that keep the web tier stateless for
-            predictable scaling. For example, session data is stored in the user
-            cookie, and the cache is backed by a memcached cluster.
+            Revel предоставляет примитивы для построения веб приложений без состояния
+            для предсказуемого масштабирования. Например, данные пользовательских
+            сессий хранятся в куках, а закешированные данные – в кластере memcached.
           </p>
         </div>
         <div class="span4">
@@ -183,10 +182,10 @@ title: Revel на русском | Веб фреймворк на языке go 
           <dt><a href="#templates">Шаблоны</a></dt>
           <dd>Revel делает Go шаблоны простыми в использовании и масштабируемыми.</dd>
 
-          <dt><a href="#interceptors">Interceptors</a></dt>
+          <dt><a href="#interceptors">Перехватчики</a></dt>
           <dd>
-            Register functionality to be called before or after actions.  They
-            can be activated per Controller.
+            Регистрируйте функции для вызова до и после действий.  Они могут быть
+            определены отдельно для каждого Контроллера.
           </dd>
 
           <dt><a href="#filters">Фильтры</a></dt>
@@ -259,7 +258,7 @@ func (c Hotels) Save(hotel Hotel) revel.Result {
                   name of the local variable!
               </ul>
 
-              Here's an example:
+              Пример:
             </p>
           </div>
 
