@@ -1,59 +1,55 @@
 ---
-title: Getting Started
+title: Приступаем к работе
 layout: tutorial
 ---
 
-This article walks through the installation process.
+Эта статья рассказывает о процессе установки.
 
-#### Install Go
+#### Устанавливаем Go
 
-To use Revel, you first need to [install Go](http://golang.org/doc/install).
+Для использования Revel, первым делом нужно [установить Go](http://golang.org/doc/install).
 
-#### Set up your GOPATH
+#### Переменная окружения GOPATH
 
-If you did not create a GOPATH as part of installation, do so now.  Your GOPATH
-is a directory tree where all of your Go code will live.  Here are the steps to do that:
+Если вы не установили GOPATH на этапе установки, сделайте это сейчас. GOPATH
+это директория, где будет находится весь ваш Go код.  Для установки продейлате следующие операции:
 
-1. Make a directory: `mkdir ~/gocode`
-2. Tell Go to use that as your GOPATH: `export GOPATH=~/gocode`
-3. Save your GOPATH so that it will apply to all future shell sessions: `echo GOPATH=$GOPATH >> .bash_profile`
+1. Создайте директорию: `mkdir ~/gocode`
+2. Установите переменную окружения GOPATH: `export GOPATH=~/gocode`
+3. Сохраните GOPATH для автоматической установки при загрузке: `echo GOPATH=$GOPATH >> .bash_profile`
 
-Now your Go installation is complete.
+Поздравляем! Вы установили Go.
 
-#### Install git and hg
+#### Установка git и mercurial
+И Git и Mercurial требуются для работы `go get`.
 
-Both Git and Mercurial are required to allow `go get` to clone various dependencies.
+* [Установка Git](http://git-scm.com/book/en/Getting-Started-Installing-Git)
+* [Установка Mercurial](http://mercurial.selenic.com/wiki/Download)
 
-* [Installing Git](http://git-scm.com/book/en/Getting-Started-Installing-Git)
-* [Installing Mercurial](http://mercurial.selenic.com/wiki/Download)
-
-#### Get the Revel framework
-
-To get the Revel framework, run
+#### Получшение Revel
+Для получения Revel, запустите команду:
 
 	go get github.com/revel/revel
 
-This command does a couple things:
+Произойдет следующие:
+* Go, используя git, клонирует репозиторий в `$GOPATH/src/github.com/revel/revel/`
+* Go найдет все зависимости и установит их через `go get`.
 
-* Go uses git to clone the repository into `$GOPATH/src/github.com/revel/revel/`
-* Go transitively finds all of the dependencies and runs `go get` on them as well.
 
-*__Note:__ if you are upgrading from v0.8 or earlier, see the [v0.9.0 release notes](https://github.com/revel/revel/releases/tag/v0.9.0) for detailed instructions.*
+#### Сборка Revel command line tool
 
-#### Build the Revel command line tool
+Revel command line tool умеет собирать, запускать и упаковывать приложения.
 
-The Revel command line tool is how you build, run, and package Revel applications.
-
-Use `go get` to install it:
+Используйте `go get` для установки:
 
 	go get github.com/revel/cmd/revel
 
-Then, ensure the $GOPATH/bin directory is in your PATH so that you can reference the command from anywhere.
+Затем проверьте, что папка $GOPATH/bin находится в PATH, что бы вы могли запускать Revel глобально.
 
 	export PATH="$PATH:$GOPATH/bin"
 	echo 'PATH="$PATH:$GOPATH/bin"' >> .bash_profile
 
-Lastly, let's verify that it works:
+На последок, проверяем, что все работает:
 
 	$ revel help
 	~
@@ -70,6 +66,6 @@ Lastly, let's verify that it works:
 
 	Use "revel help [command]" for more information.
 
-Now we are all set up.
+Теперь у нас есть установленный и работоспособный Revel.
 
-**Next: [Create a new Revel application.](createapp.html)**
+**Далее: [Создаем новое приложение.](createapp.html)**
