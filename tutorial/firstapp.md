@@ -1,39 +1,37 @@
 ---
-title: The "Hello World" app
+title: Приложение Hello World на Revel
 layout: tutorial
 ---
 
-This article runs through the quick exercise of implementing the "Hello World"
-application from
+Эта статья покажет как быстро создать приложение "Hello World" из 
 [the Play! example](http://www.playframework.org/documentation/1.2.4/firstapp).
 
-Let's start with the **myapp** project that [we created previously](createapp.html).
+Начнем в проекте **myapp**, который [мы создали](createapp.html) на прошлом уроке.
 
-Edit the **app/views/App/Index.html** template to add this form, under the
-included `flash.html` template:
+Отредактируем шаблон **app/views/App/Index.html** и добавим форму после подключения шаблона `flash.html`:
 
 	<form action="/App/Hello" method="GET">
 	    <input type="text" name="myName" /><br/>
 	    <input type="submit" value="Say hello!" />
 	</form>
 
-Refresh the page to see our work.
+Обновим страницу и посмострим на изменение.
 
 ![The Say Hello form](../img/AlohaForm.png)
 
-Let's try submitting that form.
+Давайте попробуем отправить данные из формы.
 
 ![Route not found](../img/HelloRouteNotFound.png)
 
-That makes sense.  Add the action to **app/controllers/app.go**:
+Видим осмысленную ошибку.  Добавим дейсвтие в  **app/controllers/app.go**:
 
 	func (c App) Hello(myName string) revel.Result {
 		return c.Render(myName)
 	}
 
 
-Next, we have to create the view.  Create a file
-**app/views/App/Hello.html**, with this content:
+Теперь мы должны создать представление.  Создадим файл
+**app/views/App/Hello.html**, со следующим контентом::
 
 {% raw %}
 	{{set . "title" "Home"}}
@@ -45,15 +43,14 @@ Next, we have to create the view.  Create a file
 	{{template "footer.html" .}}
 {% endraw %}
 
-Refresh the page, and you should see a greeting:
+После обновления страницы мы должны увидеть приветствие:
 
 ![Hello revel](../img/HelloRevel.png)
 
-Lastly, let's add some validation.  The name should be required, and at least
-three characters.
+В заключении, добавляем проверку.  Имя не должно быть пустым, и должно содержать не менее 3 символов.
 
-To do this, let's use the [validation module](../manual/validation.html).  Edit
-your action in **app/controllers/app.go**:
+Для этого, используем [модуль проверки](../manual/validation.html).  Отредактируем
+наше действие из **app/controllers/app.go**:
 
 	func (c App) Hello(myName string) revel.Result {
 		c.Validation.Required(myName).Message("Your name is required!")
@@ -68,11 +65,11 @@ your action in **app/controllers/app.go**:
 		return c.Render(myName)
 	}
 
-Now it will send the user back to `Index()` if they have not entered a valid
-name. Their name and the validation error are kept in the
-[Flash](../manual/sessionflash.html), which is a temporary cookie.
+Теперь мы покажем пользователю `Index()` если поле было заполнено неправильно. 
+Данные и ошибка будут сохранены во временных cookie
+[Flash](../manual/sessionflash.html).
 
-The provided `flash.html` template will show any errors or flash messages:
+Поключенный шаблон `flash.html` покажет ошибки или flash сообщения:
 
 {% raw %}
 	{{if .flash.success}}
@@ -97,7 +94,8 @@ The provided `flash.html` template will show any errors or flash messages:
 	{{end}}
 {% endraw %}
 
-When we submit that form with a name that fails validation, we want the form to retain the bad name, so that the user can edit it before re-submitting.  Amend the form you had added to your **app/views/App/Index.html** template:
+Когда мы оправляем форму с именем, которое не проходит валидацию, мы хотим, что бы в форму было вставлено ошибочное имя и пользователь мол отредактировать его перед отправлением. 
+Изменим форму в **app/views/App/Index.html**:
 
 {% raw %}
 	<form action="/App/Hello" method="GET">
@@ -108,8 +106,8 @@ When we submit that form with a name that fails validation, we want the form to 
 	</form>
 {% endraw %}
 
-Now when we submit a single letter as our name:
+Теперь, когда мы отправляем букву вместо имени:
 
 ![Example error](../img/HelloNameNotLongEnough.png)
 
-Success, we got an appropriate error and our input was saved for us to edit.
+Отлично! Мы получили ошибку и сохранили предыдущий ввод для редактирования.
