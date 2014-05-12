@@ -29,6 +29,6 @@ layout: tutorial
 ![Your Application Is Ready](../img/YourApplicationIsReady.png)
 
 Созданная структура приложения описывается
-[сдесь](../manual/organization.html).
+[здесь](../manual/organization.html).
 
 **Далее: [Изучем обработку запросов.](requestflow.html)**
