@@ -5,11 +5,11 @@ layout: manual
 
 ## Overview
 
-The application config file is named `app.conf` and uses the syntax accepted by
-[goconfig](https://github.com/revel/config), which is similar to Microsoft
-INI files.
+Конфигурация приложения находится в файле `app.conf` и использует синтаксис принятый
+[goconfig](https://github.com/revel/config), который похож на Microsoft
+INI файлы.
 
-Here's an example file:
+Пример конфигурации:
 
 	app.name=chat
 	app.secret=pJLzyoiDe17L36mytqC912j81PfTiolHm1veQK6Grn1En3YFdB5lvEHVTwFEaWvj
@@ -34,22 +34,21 @@ Here's an example file:
 	log.warn.output  = %(app.name)s.log
 	log.error.output = %(app.name)s.log
 
-Each section is a **Run Mode**.  The keys at the top level (not within any
-section) apply to all run modes.  The key under the `[prod]` section applies
-only to `prod` mode.  This allows default values to be supplied that apply
-across all modes, and overridden as required.
+Каждая секция представляет **Run Mode**.  Записи на высшем уровне (не дня всех
+секций) применяются ко всем run mode.  Записи в разделе `[prod]`  применяются только для 
+режима `prod` .  Это позволяет значениям по умолчанию применятся во всех режимах и переназначатся по необходимости.
 
-New apps start with **dev** and **prod** run modes defined, but the user may
-create any sections they wish.  The run mode is chosen at runtime by the
-argument provided to "revel run" (the [command-line tool](tool.html)).
+Новые приложения поставляются с **dev** и **prod** секциями, но вы можете создать любые секции, которые захотите.
+Параметры запуска выбираются по аргументам переданным в 
+"revel run" (the [command-line tool](tool.html)).
 
-## Custom properties
+## Пользовательские свойства
 
-The developer may define custom keys and access them via the
-[`revel.Config` variable](../docs/godoc/revel.html#variables), which exposes a
-[simple api](../docs/godoc/config.html).
+Разработчик может добавить свои записи и получить к ним доступ через
+[параметры `revel.Config`](../docs/godoc/revel.html#variables), которое представляет собой
+[простое API](../docs/godoc/config.html).
 
-Example:
+Например:
 
     var mode string
     if revel.Config.BoolDefault("mode.prod", false) {
