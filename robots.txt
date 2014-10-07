@@ -1,2 +1,2 @@
-Disallow: /
-Allow: /tutorial
+User-agent: *
+
